@@ -1,0 +1,46 @@
+{
+  "user": [
+    {
+      "name": "aniket",
+      "email": "aniket@gmail.com",
+      "password": "123",
+      "id": 1
+    },
+    {
+      "name": "sam",
+      "email": "sam@gmail.com",
+      "password": "123",
+      "id": 2
+    },
+    {
+      "name": "john",
+      "email": "j@gmail.com",
+      "password": "123",
+      "id": 3
+    },
+    {
+      "name": "kiv",
+      "email": "k@gmail.com",
+      "password": "123",
+      "id": 4
+    },
+    {
+      "name": "tony",
+      "email": "t@gmail.com",
+      "password": "123",
+      "id": 5
+    },
+    {
+      "name": "quro",
+      "email": "q@gmail.com",
+      "password": "123",
+      "id": 6
+    },
+    {
+      "name": "janvi",
+      "email": "ja@gamil.com",
+      "password": "123",
+      "id": 7
+    }
+  ]
+}
