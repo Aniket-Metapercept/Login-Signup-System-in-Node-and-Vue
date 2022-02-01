@@ -5,6 +5,7 @@
          <li> <router-link to="/">Home</router-link> </li>
          <li> <router-link to="/about">About</router-link> </li>
          <li> <router-link to="/contact">Contact</router-link> </li>
+         <li> <router-link to="/profile">Profile</router-link> </li>
          <li> <a v-on:click="logout">Logout</a> </li>
      </ul>
  </div>
