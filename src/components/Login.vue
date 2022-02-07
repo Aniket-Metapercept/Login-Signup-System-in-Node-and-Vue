@@ -1,67 +1,175 @@
 <template>
+
+
+<div class="justify-center"> 
+<div class="full">
+
+
+  
+
+  <v-form v-model="valid" >
     
+     <v-card
+    class="mx-auto con"
+    max-width="444"
+    >
+        
+      <h1 class="text-center">SignIn</h1>
+      <h5 class="text-center pb-4" >LearnOL User Portal</h5>
+      <div style="color:red;" class="text-center">{{msg}}</div>
+      <hr class="mb-4">
 
-        <div class="con">
+    <v-container class="main"  v-if="! toshow">
+      <v-row>
+        <v-col
+          
+        >
+          <v-text-field
+            v-model="email"
+            :rules="emailRules"
+            label="E-mail"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row> 
 
-
-
-
-            <h1>SignIn</h1>
-            <h5>LearnOL User Portal</h5>
-
-            <div style="color:red">{{msg}}</div>
+      <v-row>  
+        <v-col
+          
+        >
+          <v-text-field
+            v-model="password"
             
-            <hr>
-            
-            <div class="register" v-if="!toshow">
-                
-                <input type="email" name="" id="e" placeholder="Email" v-model="email">
-                <input type="password" name="" id="p" placeholder="Password" v-model="password">
-                <button v-on:click="login">Login</button>
-            </div>
+            :counter="10"
+            label="Password"
+            required
+            type="password"
+          ></v-text-field>
+        </v-col>
+        
+      </v-row>
+      <div class="d-flex justify-space-around align-center flex-column flex-sm-row">
+          <v-btn
+          class="btn"
+          color="primary"
+          v-on:click="login"
+        >
+          Login
+        </v-btn>
+      </div>
 
-            
-            <div v-if="msg2" style="color:red">Invalid Otp</div>
+    </v-container>
+
+    <v-container class="main"  v-if="toshow">
+      <v-row>
+        <v-col>
+          <v-text-field
+            v-model="Otp"
+            label="Otp"
+            required
+          ></v-text-field>
+        </v-col>
+      </v-row> 
+
+      <div class="d-flex justify-space-around align-center flex-column flex-sm-row">
+       <v-btn
+      class="btn"
+      color="primary"
+      v-on:click="Check"
+    >
+      Login
+    </v-btn>
+
+      </div>
+
+    </v-container>
+    <div  class="text-center"> 
+
+    <small >Dont have Account?<a v-on:click="sign" style="color:blue"> signup</a> </small>
+    </div>
+  </v-card>
+  </v-form>
+ 
 
 
-            <div v-if="toshow" class="register">
-                <input type="text" name="" id="o" placeholder="Otp" v-model="Otp">
-                <button v-on:click="Check">Login</button>
-            </div>
 
 
-            <!-- <small>Dont have Account? <router-link to="/signup">signup</router-link> </small> -->
-            <small>Dont have Account?  <a v-on:click="sign">signup</a> </small>
-    <!-- <a v-on:click="sign">signup</a> -->
-        </div>
-
-        <footer>
+        
+        <!-- <footer>
 
             &copy; copyright 2022 metapercept technology service
-        </footer>
+        </footer> -->
 
+      <div class="text-center pt-6">
+    &copy; copyright 2022 metapercept technology service
+    </div>
+
+</div>
+</div>
 </template>
 
 <script>
 
+// import { ref } from '@vue/composition-api'
+
 import axios from 'axios'
 export default {
+
+  // setup() {
+  //   // const myForm = ref(null)  // 1️⃣
+
+  //   return {
+  //     // myForm, // 1️⃣
+
+      
+  //   validate () {
+  //       // this.$refs.form.validate()
+  //       console.log(this.$refs)
+  //     },
+
+
+  
+  //   }
+  // },
+
+
   name: 'Login',
   props: {
 
   },
+  components:{
+  
+  }
+  ,
 
   data(){
       return {
-          email:"",
+          // email:"",
           password:"",
           msg:"",
           toshow:false,
           Otp:null,
           msg2:false,
+
+
+          valid: false,
+      firstname: '',
+      lastname: '',
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => v.length <= 10 || 'Name must be less than 10 characters',
+      ],
+      email: '',
+      emailRules: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+/.test(v) || 'E-mail must be valid',
+      ],
+     
+
+      checkbox: false,
         
       }
-  },
+    },
   methods:{
       async login(){
           console.log("wait a sec")
@@ -118,7 +226,9 @@ export default {
           localStorage.clear()
           this.$router.push({name:"signup"}) 
           console.log("egiaehgiuaehn")
-      }
+      },
+
+
 
   },
 
@@ -139,15 +249,20 @@ export default {
     
    
     .con {
-        border: 1px solid black;
-        width: 380px;
+        /* border: 1px solid black; */
+        box-shadow: 0 0 31px 1px
+        /* width: 380px;
         position: relative;
         top: 100px;
-        left: 40%;
-        padding:15px 10px;
+        left: 0%;
+        padding:15px 15px; */
        
     }
-
+    .full{
+     
+      margin-top:105px ;
+      
+    }
 
     img{
         width: 100px;
@@ -163,8 +278,8 @@ export default {
         border: 1px solid rgb(10, 10, 10);
     }
 
-    .register button{
-        width: 320px;
+    .btn{
+        width: 290px;
         height: 40px;
         border: 1px solid skyblue;
         color: white;
@@ -179,8 +294,8 @@ export default {
     }
 
     hr{
-        width: 320px;
-        margin-bottom: 25px;
+        /* width: 350px;
+        margin-bottom: 25px; */
     }
     h1, h5{
         color: #413394;
@@ -188,9 +303,16 @@ export default {
 
     footer{
         padding: 1px 3px;
-    margin: 8pc;
-       margin-left: 200px;
+        margin: 8pc;
+       margin-left: 400px;
     }
 
+
+  v-container{
+     border: 1px solid rgb(10, 10, 10);
+  }
+
+
+ 
 </style>
 
